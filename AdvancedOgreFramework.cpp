@@ -1,6 +1,7 @@
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 #include "AdvancedOgreFramework.hpp"
+#include "res/Resource.h" // PTR TuanNA [Add include- 10/7/2016]
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -46,69 +47,86 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     m_pLog->setDebugOutputEnabled(true);
 
     m_pRoot = new Ogre::Root();
+//PTR TuanNA begin comment
+//[Add icon to app- 10/7/2016]
+    if(m_pRoot->showConfigDialog())
+	{
+		// If returned true, user clicked OK so initialise
+		// Here we choose to let the system create a default rendering window by passing 'true'
+		m_pRenderWnd = m_pRoot->initialise(true, "OgreFramework Render Window");
 
-    if(!m_pRoot->showConfigDialog())
-        return false;
-    m_pRenderWnd = m_pRoot->initialise(true, wndTitle);
+		// Let's add a nice window icon
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+		HWND hwnd;
+		m_pRenderWnd->getCustomAttribute("WINDOW", (void*)&hwnd);
+		LONG iconID   = (LONG)LoadIcon( GetModuleHandle(0), MAKEINTRESOURCE(IDI_APPICON) );
+		SetClassLong( hwnd, GCL_HICON, iconID );
+#endif
+//PTR TuanNA end comment
+		// PTR TuanNA [CM m_pRenderWnd- 10/7/2016] m_pRenderWnd = m_pRoot->initialise(true, wndTitle);
 
-    m_pViewport = m_pRenderWnd->addViewport(0);
-    m_pViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
+		m_pViewport = m_pRenderWnd->addViewport(0);
+		m_pViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
 
-    m_pViewport->setCamera(0);
+		m_pViewport->setCamera(0);
 
-    size_t hWnd = 0;
-    OIS::ParamList paramList;
-    m_pRenderWnd->getCustomAttribute("WINDOW", &hWnd);
+		size_t hWnd = 0;
+		OIS::ParamList paramList;
+		m_pRenderWnd->getCustomAttribute("WINDOW", &hWnd);
 
-    paramList.insert(OIS::ParamList::value_type("WINDOW", Ogre::StringConverter::toString(hWnd)));
+		paramList.insert(OIS::ParamList::value_type("WINDOW", Ogre::StringConverter::toString(hWnd)));
 
-    m_pInputMgr = OIS::InputManager::createInputSystem(paramList);
+		m_pInputMgr = OIS::InputManager::createInputSystem(paramList);
 
-    m_pKeyboard = static_cast<OIS::Keyboard*>(m_pInputMgr->createInputObject(OIS::OISKeyboard, true));
-    m_pMouse = static_cast<OIS::Mouse*>(m_pInputMgr->createInputObject(OIS::OISMouse, true));
+		m_pKeyboard = static_cast<OIS::Keyboard*>(m_pInputMgr->createInputObject(OIS::OISKeyboard, true));
+		m_pMouse = static_cast<OIS::Mouse*>(m_pInputMgr->createInputObject(OIS::OISMouse, true));
 
-    m_pMouse->getMouseState().height = m_pRenderWnd->getHeight();
-    m_pMouse->getMouseState().width	 = m_pRenderWnd->getWidth();
+		m_pMouse->getMouseState().height = m_pRenderWnd->getHeight();
+		m_pMouse->getMouseState().width	 = m_pRenderWnd->getWidth();
 
-    if(pKeyListener == 0)
-        m_pKeyboard->setEventCallback(this);
-    else
-        m_pKeyboard->setEventCallback(pKeyListener);
+		if(pKeyListener == 0)
+			m_pKeyboard->setEventCallback(this);
+		else
+			m_pKeyboard->setEventCallback(pKeyListener);
 
-    if(pMouseListener == 0)
-        m_pMouse->setEventCallback(this);
-    else
-        m_pMouse->setEventCallback(pMouseListener);
+		if(pMouseListener == 0)
+			m_pMouse->setEventCallback(this);
+		else
+			m_pMouse->setEventCallback(pMouseListener);
 
-    Ogre::String secName, typeName, archName;
-    Ogre::ConfigFile cf;
-    cf.load("resources.cfg");
+		Ogre::String secName, typeName, archName;
+		Ogre::ConfigFile cf;
+		cf.load("resources.cfg");
 
-    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
-    while (seci.hasMoreElements())
-    {
-        secName = seci.peekNextKey();
-        Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-        Ogre::ConfigFile::SettingsMultiMap::iterator i;
-        for (i = settings->begin(); i != settings->end(); ++i)
-        {
-            typeName = i->first;
-            archName = i->second;
-            Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
-        }
-    }
-    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+		Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+		while (seci.hasMoreElements())
+		{
+			secName = seci.peekNextKey();
+			Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+			Ogre::ConfigFile::SettingsMultiMap::iterator i;
+			for (i = settings->begin(); i != settings->end(); ++i)
+			{
+				typeName = i->first;
+				archName = i->second;
+				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(archName, typeName, secName);
+			}
+		}
+		Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+		Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
-    m_pTrayMgr = new OgreBites::SdkTrayManager("AOFTrayMgr", m_pRenderWnd, m_pMouse, 0);
+		m_pTrayMgr = new OgreBites::SdkTrayManager("AOFTrayMgr", m_pRenderWnd, m_pMouse, 0);
 
-    m_pTimer = new Ogre::Timer();
-    m_pTimer->reset();
+		m_pTimer = new Ogre::Timer();
+		m_pTimer->reset();
 
-    m_pRenderWnd->setActive(true);
-
-    return true;
-}
+		m_pRenderWnd->setActive(true);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}  
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 

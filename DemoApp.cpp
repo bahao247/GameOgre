@@ -33,7 +33,7 @@ void DemoApp::startDemo()
 	OgreFramework::getSingletonPtr()->m_pLog->logMessage("Demo initialized!");
  
 	m_pAppStateManager = new AppStateManager();
- 
+	
 	MenuState::create(m_pAppStateManager, "MenuState");
 	GameState::create(m_pAppStateManager, "GameState");
 	PauseState::create(m_pAppStateManager, "PauseState");

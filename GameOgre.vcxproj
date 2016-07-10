@@ -107,8 +107,15 @@
     <ClInclude Include="MenuState.hpp" />
     <ClInclude Include="PauseState.hpp" />
     <ClInclude Include="rapidxml.hpp" />
+    <ClInclude Include="res\Resource.h" />
     <ClInclude Include="SinbadCharacterController.hpp" />
     <ClInclude Include="SinbadState.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\GameOgre.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\GameOgre.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

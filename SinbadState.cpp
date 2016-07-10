@@ -85,7 +85,7 @@ void SinbadState::createScene()
 	delete pDotSceneLoader;
 
 	m_pCamera->setNearClipDistance(0.1);
-	m_pCamera->setFarClipDistance(100000);//设置大些，否则看不到天空
+	m_pCamera->setFarClipDistance(100000);
 	// create our character controller
 	m_pChara = new SinbadCharacterController(m_pCamera);
 
