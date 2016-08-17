@@ -8,10 +8,10 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommand>$(Configuration)\$(ProjectName).exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>$(OGRE_HOME)\Bin\$(Configuration)\$(ProjectName).exe</LocalDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerWorkingDirectory>$(Configuration)</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>$(OGRE_HOME)\Bin\$(Configuration)</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
