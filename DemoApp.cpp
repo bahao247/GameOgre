@@ -26,8 +26,9 @@ DemoApp::~DemoApp()
  
 void DemoApp::startDemo()
 {
+	//PTR TuanNA- Create App: Title, log and select state [21:16:40 4/9/2016 by TNA]
 	new OgreFramework();
-	if(!OgreFramework::getSingletonPtr()->initOgre("AdvancedOgreFramework", 0, 0))
+	if(!OgreFramework::getSingletonPtr()->initOgre("Game Ogre3D", 0, 0))
 		return;
  
 	OgreFramework::getSingletonPtr()->m_pLog->logMessage("Demo initialized!");

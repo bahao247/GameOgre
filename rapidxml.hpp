@@ -1,10 +1,34 @@
 #ifndef RAPIDXML_HPP_INCLUDED
 #define RAPIDXML_HPP_INCLUDED
 
-// Copyright (C) 2006, 2009 Marcin Kalicinski
-// Version 1.13
-// Revision $DateTime: 2009/05/13 01:46:17 $
-//! \file rapidxml.hpp This file contains rapidxml parser and DOM implementation
+/*
+---------------------------------------------------------------------------------------
+   ___                   _															   
+  /___\__ _ _ __ ___    /_\  _ __  _ __
+ //  // _` | '__/ _ \  //_\\| '_ \| '_ \											   
+/ \_// (_| | | |  __/ /  _  \ |_) | |_) \
+\___/ \__, |_|  \___| \_/ \_/ .__/| .___/
+      |___/                 |_|   |_|                                 
+      Ogre 1.8.x Application for VC10
+      https://plus.google.com/+bahaonguyen/
+---------------------------------------------------------------------------------------
+| Filename   : rapidxml.hpp                                                           
+---------------------------------------------------------------------------------------
+| Written in : C++                                                     
+---------------------------------------------------------------------------------------
+| Compiler   : Microsoft Visual C++ 2010 Service Pack 1.                               
+---------------------------------------------------------------------------------------
+| Engine     : Ogre 1.8;...                                                                     
+---------------------------------------------------------------------------------------
+| Written by : Ba Hao Nguyen – Sports editors, IT.                                
+---------------------------------------------------------------------------------------
+| Note       : This file contains rapidxml parser and DOM implementation...                                
+---------------------------------------------------------------------------------------
+| Create File: 15:00:00 4/7/2016 by TNA                                                             
+---------------------------------------------------------------------------------------
+| Last Update: 15:40:08 4/9/2016 by TNA                                                             
+---------------------------------------------------------------------------------------
+*/
 
 // If standard library is disabled, user must provide implementations of required functions and typedefs
 #if !defined(RAPIDXML_NO_STDLIB)

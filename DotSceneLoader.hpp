@@ -1,7 +1,35 @@
+/*
+---------------------------------------------------------------------------------------
+   ___                   _															   
+  /___\__ _ _ __ ___    /_\  _ __  _ __
+ //  // _` | '__/ _ \  //_\\| '_ \| '_ \											   
+/ \_// (_| | | |  __/ /  _  \ |_) | |_) \
+\___/ \__, |_|  \___| \_/ \_/ .__/| .___/
+      |___/                 |_|   |_|                                 
+      Ogre 1.8.x Application for VC10
+      https://plus.google.com/+bahaonguyen/
+---------------------------------------------------------------------------------------
+| Filename   : DotSceneLoader.hpp                                                           
+---------------------------------------------------------------------------------------
+| Written in : C++                                                     
+---------------------------------------------------------------------------------------
+| Compiler   : Microsoft Visual C++ 2010 Service Pack 1.                               
+---------------------------------------------------------------------------------------
+| Engine     : Ogre 1.8;...                                                                     
+---------------------------------------------------------------------------------------
+| Written by : Ba Hao Nguyen – Sports editors, IT.                                
+---------------------------------------------------------------------------------------
+| Note       : Write to LogManager...                                
+---------------------------------------------------------------------------------------
+| Create File: 14:00:00 4/7/2016 by TNA                                                             
+---------------------------------------------------------------------------------------
+| Last Update: 14:07:50 4/9/2016 by TNA                                                             
+---------------------------------------------------------------------------------------
+*/
 #ifndef DOT_SCENELOADER_H
 #define DOT_SCENELOADER_H
  
-// Includes
+//PTR TuanNA- Includes... [14:08:06 4/9/2016 by TNA]
 #include <OgreString.h>
 #include <OgreVector3.h>
 #include <OgreQuaternion.h>
@@ -9,8 +37,41 @@
 #include <vector>
  
 #include "rapidxml.hpp"
+
+/*
+//PTR TuanNA begin comment
+//Include & SceneLoader...[14:11:00 4/9/2016 by TNA]
+#include <tinyxml.h>
+#include "PhysicsManager.h"
+#include "Ogre.h"
+#include "OgrePrerequisites.h"
+#include "OgreTerrain.h"...
+
+class SceneLoader
+{
+private:
+TiXmlDocument			*mvpXMLDoc;
+Ogre::SceneManager		*mvpSceneMgr;
+Ogre::SceneNode			*mvpAttachNode;
+PhysicsManager			*mvpPhysicsMgr;
+Ogre::String			sFilename;
+Ogre::Terrain*			mvpTerrain;
+
+bool parseNode(TiXmlElement *XMLNode);
+bool parseScene(TiXmlElement *XMLRoot);
+void stripStr(const Ogre::String& string2trip, Ogre::String &base,Ogre::String &path);
+
+public:
+SceneLoader() : mvpSceneMgr(0) {};
+~SceneLoader();
+
+bool parseLevel(const Ogre::String& filename,const Ogre::String &group, Ogre::SceneManager*,Ogre::SceneNode *attachNode, PhysicsManager *physicsMgr,Ogre::Terrain* terrain);
+
+};
+//PTR TuanNA end comment
+*/
  
-    // Forward declarations
+    //PTR TuanNA- Forward declarations... [14:08:11 4/9/2016 by TNA]
     namespace Ogre
     {
         class SceneManager;

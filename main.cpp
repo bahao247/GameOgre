@@ -15,6 +15,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
 int main(int argc, char **argv)
 #endif
 {
+	// PTR TuanNA [Creates a windows app and starts it- 10/7/2016]
 	DemoApp demo;
 	try	
 	{
