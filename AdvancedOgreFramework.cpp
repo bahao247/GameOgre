@@ -96,7 +96,12 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
 
 		Ogre::String secName, typeName, archName;
 		Ogre::ConfigFile cf;
+#ifdef _DEBUG
+		cf.load("resources_d.cfg");
+#else
 		cf.load("resources.cfg");
+#endif
+		
 
 		Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
 		while (seci.hasMoreElements())

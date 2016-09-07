@@ -11,12 +11,17 @@
 #include "SdkCameraMan.h" 
 #include <OgreSubEntity.h>
 #include <OgreMaterialManager.h>
+#include <OgreRenderTexture.h>
+#include <OgreRenderTargetListener.h>
+#include <OgreHardwarePixelBuffer.h>
  
 //|||||||||||||||||||||||||||||||||||||||||||||||
   
 //|||||||||||||||||||||||||||||||||||||||||||||||
  
-class SinbadState : public AppState
+class SinbadState : public AppState,
+	public Ogre::FrameListener,
+	public Ogre::RenderTargetListener
 {
 public:
 	SinbadState();
@@ -50,6 +55,13 @@ private:
 	OgreBites::SdkCameraMan*	m_pCameraMan;
 	SinbadCharacterController*	m_pChara;
 	Ogre::NameValuePairList		mInfo;    // custom sample info
+
+	//PTR TuanNA [mMiniscreen- 7/9/2016]
+	virtual void preRenderTargetUpdate(const Ogre::RenderTargetEvent& rte);
+	virtual void postRenderTargetUpdate(const Ogre::RenderTargetEvent& rte);
+
+	void createGrassMesh(); //PTR TuanNA [Add func createGrassMesh()- 7/9/2016]
+	Ogre::Rectangle2D* mMiniscreen;//PTR TuanNA [mMiniscreen- 7/9/2016]
 };
  
 //|||||||||||||||||||||||||||||||||||||||||||||||
